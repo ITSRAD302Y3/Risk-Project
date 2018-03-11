@@ -39,7 +39,7 @@ namespace Risk_Project.Components
         #region Constructor
         public Board()
         {
-            
+            CreateContinents();
         }
         #endregion
 
@@ -54,7 +54,7 @@ namespace Risk_Project.Components
             
         }
 
-        public void Init()
+        public void CreateContinents()
         {
 
         }

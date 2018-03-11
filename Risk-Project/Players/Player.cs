@@ -31,9 +31,14 @@ namespace Risk_Project.Players
         #endregion
 
         #region Constructor
-        public Player()
+        public Player(string nameIn, Color colourIn)
         {
+            this.Name = nameIn;
+            this.Colour = colourIn;
             this.PlayerState = State.Idle;
+            this.Armies = new List<Unit>();
+            this.Territories = new List<Territory>();
+            this.Orders = new List<Order>();
         }
         #endregion
 
@@ -53,14 +58,6 @@ namespace Risk_Project.Players
         public List<Order> GetOrders()
         {
             return this.Orders;
-        }
-
-        public void Reset()
-        {
-            Name = null;
-            Armies = null;
-            Territories = null;
-            PlayerState = State.Idle;
         }
 
         public void ResetOrders()

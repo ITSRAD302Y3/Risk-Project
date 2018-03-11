@@ -14,7 +14,7 @@ namespace Risk_Project
         SpriteBatch spriteBatch;
 
         #region Properties
-        private List<Player> players;
+        public static List<Player> players = new List<Player>();
         private Camera2D currentCamera;
         private Board currentBoard;
         #endregion
@@ -27,6 +27,7 @@ namespace Risk_Project
 
         protected override void Initialize()
         {
+            GameInit();
 
             base.Initialize();
         }
@@ -36,7 +37,6 @@ namespace Risk_Project
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
         }
-
 
         protected override void UnloadContent()
         {
@@ -64,7 +64,8 @@ namespace Risk_Project
         #region Methods
         private void GameInit()
         {
-
+            CreatePlayers();
+            CreateBoard();
         }
 
         public static void GameRestart()
@@ -72,12 +73,22 @@ namespace Risk_Project
 
         }
 
-        private void CheckPlayerStates()
+        private void CreateBoard()
         {
-
+            currentBoard = new Board();
         }
 
-        private void CreateBoard()
+        private void CreatePlayers()
+        {
+            Player one = new Player("David Brennan", Color.LightBlue);
+            PlayerAI two = new PlayerAI("AI", Color.DarkRed);
+
+            // Add these players to our list
+            players.Add(one);
+            players.Add(two);
+        }
+
+        private void CheckPlayerStates()
         {
 
         }
