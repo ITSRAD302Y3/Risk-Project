@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Risk_Project.Players;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,37 +21,46 @@ namespace Risk_Project.World_Objects
         public State Status;
 
         //Properties
-        private string Name { get; set; }
+        public string Name { get; set; }
 
-        public ConsoleColor Color { get; set; }
+        public Color Colour { get; set; }
 
-        private List<Unit> Armies { get; set; }   //List of the players units currently in the territory 
+        public List<Unit> Armies { get; set; }   //List of the players units currently in the territory 
 
+        public Player Parent { get; set; }
+
+        //Constructor
+        public Territory()
+        {
+
+        }
 
         //Methods
         //Display units in territory
-        private int GetArmies()
+        public int GetArmies()
         {
             return Armies.Count();
         }
 
         //Reset the territory 
-        private void Reset()
+        public void Reset()
         {
-            this.Reset();
+            Name = null;
+            Colour = Color.Transparent;
+            Armies.Clear();
+            Parent = null;
         }
 
-        //Can remove this
-        //Set the unit number to 1 if the territory is unnocupied
-        private void UnocupiedTerritory()
-        {
-            State state = State.Unoccupied;
+        ////Can remove this
+        ////Set the unit number to 1 if the territory is unnocupied
+        //private void UnocupiedTerritory()
+        //{
+        //    State state = State.Unoccupied;
 
-            if (Status.Equals(state))
-            {
+        //    if (Status.Equals(state))
+        //    {
 
-            }
-        }
-
+        //    }
+        //}
     }
 }
