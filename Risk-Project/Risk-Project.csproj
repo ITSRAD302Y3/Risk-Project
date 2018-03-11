@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Components\Board.cs" />
     <Compile Include="GameRoot.cs" />
+    <Compile Include="Players\Order.cs" />
     <Compile Include="Players\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
