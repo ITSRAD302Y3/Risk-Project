@@ -8,6 +8,7 @@ namespace Risk_Project.Players
 {
     public class Player
     {
+        #region Properties
         public enum State
         {
             Idle,
@@ -18,23 +19,30 @@ namespace Risk_Project.Players
 
         public State PlayerState { get; set; }
 
-        public Player()
-        {
-            this.PlayerState = State.Idle;
-        }
-
         public string Name { get; set; }
+
         public List<Unit> Armies { get; set; }
 
         public List<Territory> Territories { get; set; }
 
         private List<Order> Orders { get; set; }
 
-        public Color Color { get; set; }
+        public Color Colour { get; set; }
+        #endregion
 
+        #region Constructor
+        public Player()
+        {
+            this.PlayerState = State.Idle;
+        }
+        #endregion
+
+        #region Methods
         public override string ToString()
         {
-            return "Player: " + Name + "Units:   " + Armies + "Territories Owned: " + Territories;
+            return ("Player: " + Name 
+                + "Units: " + Armies.Count.ToString() 
+                + "Territories Owned: " + Territories.Count.ToString());
         }
 
         public void Surrender()
@@ -44,7 +52,7 @@ namespace Risk_Project.Players
 
         public List<Order> GetOrders()
         {
-            return Orders;
+            return this.Orders;
         }
 
         public void Reset()
@@ -52,11 +60,13 @@ namespace Risk_Project.Players
             Name = null;
             Armies = null;
             Territories = null;
+            PlayerState = State.Idle;
         }
 
         public void ResetOrders()
         {
-            Orders = null;
+            this.Orders.Clear();
         }
+        #endregion
     }
 }
