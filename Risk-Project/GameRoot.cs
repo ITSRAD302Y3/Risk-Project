@@ -1,6 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using MonoGame.Extended;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Risk_Project.Players;
+using Risk_Project.Components;
 
 namespace Risk_Project
 {
@@ -8,6 +12,12 @@ namespace Risk_Project
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        #region Properties
+        private List<Player> players;
+        private Camera2D currentCamera;
+        private Board currentBoard;
+        #endregion
 
         public GameRoot()
         {
@@ -50,5 +60,27 @@ namespace Risk_Project
 
             base.Draw(gameTime);
         }
+
+        #region Methods
+        private void GameInit()
+        {
+
+        }
+
+        public static void GameRestart()
+        {
+
+        }
+
+        private void CheckPlayerStates()
+        {
+
+        }
+
+        private void CreateBoard()
+        {
+
+        }
+        #endregion
     }
 }
