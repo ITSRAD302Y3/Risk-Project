@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Risk_Project.World_Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Risk_Project.Players
 {
-    class Order
+    public class Order
     {
         #region Properties
         public enum Action
@@ -15,10 +16,10 @@ namespace Risk_Project.Players
             Transfer
         }
 
-        public string Name;
-        public int Amount;
+        public string Name { get; set; }
+        public int Amount { get; set; }
         public Action CurrentAction;
-        public Territory Destination;
+        public Territory Destination { get; set; }
         #endregion
 
         #region Constructor

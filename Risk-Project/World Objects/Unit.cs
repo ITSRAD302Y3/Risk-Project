@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Risk_Project.World_Objects
 {
-    class Unit
+    public class Unit
     {
         public int Amount;
 

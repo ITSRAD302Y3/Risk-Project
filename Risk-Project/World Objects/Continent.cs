@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Risk_Project.World_Objects
 {
-    class Continent
+    public class Continent
     {
         #region Properties
         public string Name;

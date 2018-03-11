@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
 using MonoGame.Extended;
+using Risk_Project.World_Objects;
 
 namespace Risk_Project.Components
 {
-    class Board : SimpleDrawableGameComponent
+    public class Board : SimpleDrawableGameComponent
     {
         #region Properties
         public enum Action
