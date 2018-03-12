@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
 using MonoGame.Extended;
+using MonoGame.Extended.Gui;
 using Risk_Project.World_Objects;
 
 namespace Risk_Project.Components
@@ -39,7 +40,8 @@ namespace Risk_Project.Components
         #region Constructor
         public Board()
         {
-            
+            GuiSkin currentSkin = new GuiSkin();
+            GuiScreen currentScreen = new GuiScreen(currentSkin);
         }
         #endregion
 

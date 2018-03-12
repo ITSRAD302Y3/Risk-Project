@@ -16,9 +16,9 @@ namespace Risk_Project.Components
         #endregion
 
         #region Constructor
-        public Button()
+        public Button(Board.Action action)
         {
-
+            this.buttonAction = action;
         }
         #endregion
 
