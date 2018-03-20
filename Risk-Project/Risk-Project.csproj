@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Components\Board.cs" />
     <Compile Include="Components\Button.cs" />
+    <Compile Include="Components\ContentLoader.cs" />
     <Compile Include="GameRoot.cs" />
     <Compile Include="Players\Player.cs" />
     <Compile Include="Players\Order.cs" />

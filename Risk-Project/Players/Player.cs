@@ -34,6 +34,7 @@ namespace Risk_Project.Players
         public Player()
         {
             this.PlayerState = State.Idle;
+
         }
         #endregion
 

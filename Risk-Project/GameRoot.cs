@@ -14,9 +14,15 @@ namespace Risk_Project
         SpriteBatch spriteBatch;
 
         #region Properties
+        public static Dictionary<string, Texture2D> TextureResource = new Dictionary<string, Texture2D>();
         private List<Player> players;
         private Camera2D currentCamera;
         private Board currentBoard;
+        #endregion
+
+        #region Default Properties
+        const int PLAYER_COUNT = 2;
+
         #endregion
 
         public GameRoot()
@@ -34,6 +40,7 @@ namespace Risk_Project
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
 
         }
 
@@ -64,7 +71,23 @@ namespace Risk_Project
         #region Methods
         private void GameInit()
         {
+            // Initialize players
+            for (int i = 0; i < PLAYER_COUNT; i++)
+            {
+                players.Add(new Player());
+            }
 
+            CreatePlayers();
+            CreateBoard();
+        }
+
+        private void CreatePlayers()
+        {
+            players[0].Name = "Fearon";
+            players[0].Colour = Color.Blue;
+
+            players[1].Name = "AI";
+            players[1].Colour = Color.Red;
         }
 
         public static void GameRestart()
@@ -79,7 +102,7 @@ namespace Risk_Project
 
         private void CreateBoard()
         {
-
+            currentBoard = new Board();
         }
         #endregion
     }

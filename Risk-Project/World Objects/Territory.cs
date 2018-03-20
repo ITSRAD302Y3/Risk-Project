@@ -27,6 +27,8 @@ namespace Risk_Project.World_Objects
 
         public List<Unit> Armies { get; set; }   //List of the players units currently in the territory 
 
+        public List<Unit> DefaultArmies { get; set; }
+
         public Player Parent { get; set; }
 
         //Constructor
@@ -40,6 +42,11 @@ namespace Risk_Project.World_Objects
         public int GetArmies()
         {
             return Armies.Count();
+        }
+
+        public List<Unit> SetDefaultArmies()
+        {
+
         }
 
         //Reset the territory 
