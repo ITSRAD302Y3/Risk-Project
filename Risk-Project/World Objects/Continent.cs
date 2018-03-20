@@ -16,16 +16,18 @@ namespace Risk_Project.World_Objects
         #endregion
 
         #region Constructor
-        public Continent()
+        public Continent(string name, Color color)
         {
-
+            this.Name = name;
+            this.OutlineColor = color;
+            this.Territories = new List<Territory>();
         }
         #endregion
 
         #region Methods
-        private List<Territory> CreateTerritories()
+        public void AddTerritories(List<Territory> territories)
         {
-            return null;
+            this.Territories.AddRange(territories);
         }
 
         public void Reset()

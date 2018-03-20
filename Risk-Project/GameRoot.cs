@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Risk_Project.Players;
 using Risk_Project.Components;
+using Risk_Project.World_Objects;
+using Loader;
 
 namespace Risk_Project
 {
@@ -14,15 +16,17 @@ namespace Risk_Project
         SpriteBatch spriteBatch;
 
         #region Properties
-        public static Dictionary<string, Texture2D> TextureResource = new Dictionary<string, Texture2D>();
+        public static Dictionary<string, Texture2D> 
+            TextureResource = new Dictionary<string, Texture2D>();
         private List<Player> players;
         private Camera2D currentCamera;
         private Board currentBoard;
         #endregion
 
         #region Default Properties
-        const int PLAYER_COUNT = 2;
-
+        public const int PLAYER_COUNT = 2;
+        public const int DEFAULT_UNIT_AMOUNT = 1;
+        public const int DEFAULT_ARMIES = 2;
         #endregion
 
         public GameRoot()
@@ -33,6 +37,7 @@ namespace Risk_Project
 
         protected override void Initialize()
         {
+            GameInit();
 
             base.Initialize();
         }
@@ -41,7 +46,10 @@ namespace Risk_Project
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            // Load Texture Resources
+            ContentLoader.ContentLoad<Texture2D>(Content, "Textures");
 
+            CreateBoard();
         }
 
 
@@ -71,14 +79,22 @@ namespace Risk_Project
         #region Methods
         private void GameInit()
         {
+            currentCamera = new Camera2D(GraphicsDevice);
+
             // Initialize players
+            players = new List<Player>();
+
             for (int i = 0; i < PLAYER_COUNT; i++)
             {
                 players.Add(new Player());
             }
 
             CreatePlayers();
-            CreateBoard();
+        }
+
+        public static void GameRestart()
+        {
+
         }
 
         private void CreatePlayers()
@@ -90,14 +106,11 @@ namespace Risk_Project
             players[1].Colour = Color.Red;
         }
 
-        public static void GameRestart()
-        {
-
-        }
-
         private void CheckPlayerStates()
         {
-
+            // Remove players if eliminated.
+            // Game Over if current player is eliminated.
+            // Win condition if current player conquered all continents.
         }
 
         private void CreateBoard()

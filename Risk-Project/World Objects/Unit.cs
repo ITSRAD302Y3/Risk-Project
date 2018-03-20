@@ -12,7 +12,12 @@ namespace Risk_Project.World_Objects
 
         public Unit()
         {
-
+            try { this.Amount = GameRoot.DEFAULT_UNIT_AMOUNT; }
+            catch (NullReferenceException) { this.Amount = 1; }
+        }
+        public Unit(int amount) // Overloading Method
+        {
+            this.Amount = amount;
         }
     }
 }
