@@ -85,8 +85,8 @@ namespace Risk_Project.Components
         private void CreateContinents()
         {
             // Create Continents
-            Continent Europe = new Continent("Europe", Color.LightBlue);
-            Continent Asia = new Continent("Asia", Color.Maroon);
+            Continent Europe = new Continent("Europe", Color.CornflowerBlue);
+            Continent Asia = new Continent("Asia", Color.Orange);
 
             #region Create Territories
             List<Territory> EuropeTerritories = new List<Territory>()
