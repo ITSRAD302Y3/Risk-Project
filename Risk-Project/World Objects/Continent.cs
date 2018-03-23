@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,16 @@ namespace Risk_Project.World_Objects
         #endregion
 
         #region Methods
+
+        public void Update(GameTime gameTime)
+        {
+            
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+
+        }
 
         public void AddTerritories(List<Territory> territories)
         {

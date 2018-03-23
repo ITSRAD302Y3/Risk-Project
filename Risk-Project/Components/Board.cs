@@ -79,7 +79,7 @@ namespace Risk_Project.Components
             Continents = new List<Continent>();
 
             CreateContinents();
-
+            DistributePlayers();
         }
 
         private void CreateContinents()
@@ -91,16 +91,22 @@ namespace Risk_Project.Components
             #region Create Territories
             List<Territory> EuropeTerritories = new List<Territory>()
             {
-                new Territory("Ireland", CreateArmies(GameRoot.DEFAULT_ARMIES), GameRoot.TextureResource["t001"], Europe.OutlineColor)
+                new Territory("Ireland", CreateArmies(GameRoot.DEFAULT_ARMIES), 
+                GameRoot.TextureResource["t001"], 
+                GameRoot.TextureResource["t001o"], 
+                Europe.OutlineColor)
             };
 
             List<Territory> AsiaTerritories = new List<Territory>()
             {
-                new Territory("England", CreateArmies(GameRoot.DEFAULT_ARMIES), GameRoot.TextureResource["t002"], Asia.OutlineColor)
+                new Territory("England", CreateArmies(GameRoot.DEFAULT_ARMIES), 
+                GameRoot.TextureResource["t002"],
+                GameRoot.TextureResource["t002o"],
+                Asia.OutlineColor)
             };
             #endregion
 
-            #region Edit Terrritory Textures
+            #region Set Territory Positions
             EuropeTerritories[0].Texture.Position = new Vector2(220, 200);
             AsiaTerritories[0].Texture.Position = new Vector2(460, 200);
             #endregion
@@ -134,7 +140,17 @@ namespace Risk_Project.Components
 
         private void DistributePlayers()
         {
+            foreach (Territory territory in Continents[0].Territories)
+            {
+                territory.Parent = GameRoot.Players[0];
+                territory.UpdateColor();
+            }
 
+            foreach (Territory territory in Continents[1].Territories)
+            {
+                territory.Parent = GameRoot.Players[1];
+                territory.UpdateColor();
+            }
         }
 
         private void DistributePlayerTerritories()
@@ -144,7 +160,13 @@ namespace Risk_Project.Components
 
         private void DistributeTerritoryUnits()
         {
-
+            foreach (Continent continent in Continents)
+            {
+                foreach (Territory territory in continent.Territories)
+                {
+                    
+                }
+            }
         }
 
         public void SetPlayerOrder()

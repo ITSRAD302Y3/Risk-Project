@@ -19,9 +19,10 @@ namespace Risk_Project
         #region Properties
         public static Dictionary<string, Texture2D> 
             TextureResource = new Dictionary<string, Texture2D>();
-        private List<Player> players;
-        public static Camera2D currentCamera;
+        public static List<Player> Players;
+        private Camera2D currentCamera;
         private Board currentBoard;
+        public static SpriteFont FontTerritory;
         #endregion
 
         #region Default Properties
@@ -53,6 +54,9 @@ namespace Risk_Project
 
             var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
             currentCamera = new Camera2D(viewportAdapter);
+
+            // Load Fonts
+            FontTerritory = Content.Load<SpriteFont>("Fonts\\system");
 
             // Load Texture Resources
             TextureResource = ContentLoader.ContentLoad<Texture2D>(Content, "Textures\\Territories");
@@ -92,11 +96,11 @@ namespace Risk_Project
             currentCamera = new Camera2D(GraphicsDevice);
 
             // Initialize players
-            players = new List<Player>();
+            Players = new List<Player>();
 
             for (int i = 0; i < PLAYER_COUNT; i++)
             {
-                players.Add(new Player());
+                Players.Add(new Player());
             }
 
             CreatePlayers();
@@ -109,11 +113,11 @@ namespace Risk_Project
 
         private void CreatePlayers()
         {
-            players[0].Name = "Fearon";
-            players[0].Colour = Color.Blue;
+            Players[0].Name = "Fearon";
+            Players[0].Colour = Color.Green;
 
-            players[1].Name = "AI";
-            players[1].Colour = Color.Red;
+            Players[1].Name = "AI";
+            Players[1].Colour = Color.Yellow;
         }
 
         private void CheckPlayerStates()

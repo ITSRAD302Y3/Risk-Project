@@ -36,21 +36,17 @@ namespace Risk_Project.World_Objects
 
         public Sprite Texture { get; set; }
 
-        public Sprite OutlineTexture { get; set; }
-
-        public Texture2D Txt { get; set; }
+        public Sprite TextureOutline { get; set; }
 
         //Constructor
-        public Territory(string name, List<Unit> armies, Texture2D texture, Color outlineColor)
+        public Territory(string name, List<Unit> armies, Texture2D texture, Texture2D textureOutline, Color outlineColor)
         {
             this.Name = name;
             this.Colour = defaultColor;
             this.Armies = armies;
-            this.Txt = texture;
             this.Texture = new Sprite(texture);
-            this.OutlineTexture = new Sprite(texture);
-            this.OutlineTexture.Scale += new Vector2(0.01f); // Make outline bigger.
-            this.OutlineTexture.Color = outlineColor;
+            this.TextureOutline = new Sprite(textureOutline);
+            this.TextureOutline.Color = outlineColor;
             this.Armies = armies;
             this.DefaultArmies = Armies;
         }
@@ -58,19 +54,28 @@ namespace Risk_Project.World_Objects
         //Methods
         public void Update(GameTime gameTime)
         {
-            this.OutlineTexture.Position = Texture.Position;
+            this.Texture.Color = Colour;
+            this.TextureOutline.Position = Texture.Position;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            OutlineTexture.Draw(spriteBatch);
+            TextureOutline.Draw(spriteBatch);
             Texture.Draw(spriteBatch);
+            spriteBatch.DrawString(GameRoot.FontTerritory, GetArmies().ToString(), Texture.WorldPosition, Color.Black);
         }
         
         //Display units in territory
         public int GetArmies()
         {
-            return Armies.Count();
+            int total = 0;
+
+            foreach (Unit army in Armies)
+            {
+                total += army.Amount;
+            }
+
+            return total;
         }
 
         //Reset the territory 
@@ -83,7 +88,7 @@ namespace Risk_Project.World_Objects
         }
 
         //Set territory color
-        public void SetColor()
+        public void UpdateColor()
         {
             if (Parent != null)
                 try
