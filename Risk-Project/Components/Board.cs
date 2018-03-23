@@ -153,25 +153,9 @@ namespace Risk_Project.Components
             }
         }
 
-        private void DistributePlayerTerritories()
-        {
-
-        }
-
         private void DistributeTerritoryUnits()
         {
-            foreach (Continent continent in Continents)
-            {
-                foreach (Territory territory in continent.Territories)
-                {
-                    
-                }
-            }
-        }
-
-        public void SetPlayerOrder()
-        {
-
+            // Add units to players armies.
         }
 
         public void SetMoveOrder()
@@ -181,7 +165,7 @@ namespace Risk_Project.Components
 
         public void Commit()
         {
-
+            // When commit button is clicked, start movements, transfers and battles.
         }
 
         private void Battle()
