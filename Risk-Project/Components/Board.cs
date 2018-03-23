@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Gui;
 using Risk_Project.World_Objects;
+using Risk_Project.Players;
 
 namespace Risk_Project.Components
 {
@@ -31,12 +32,21 @@ namespace Risk_Project.Components
             Wait
         }
 
-        public int Turns;
-        public int CurrentTurn;
+        public int Turn;
         public List<Continent> Continents;
         private List<Continent> DefaultContinents;
         public Action CurrentAction;
         public Phase CurrentPhase;
+        #endregion
+
+        #region Continent Properties
+        private Continent Europe;
+        private Continent Asia;
+        #endregion
+
+        #region Territory Properties
+        private List<Territory> EuropeTerritories;
+        private List<Territory> AsiaTerritories;
         #endregion
 
         #region Constructor
@@ -79,43 +89,17 @@ namespace Risk_Project.Components
             Continents = new List<Continent>();
 
             CreateContinents();
+            CreateTerritories();
+            SetTerritoryPositions();
+            AddTerritoriesToContinents();
             DistributePlayers();
         }
 
         private void CreateContinents()
         {
             // Create Continents
-            Continent Europe = new Continent("Europe", Color.CornflowerBlue);
-            Continent Asia = new Continent("Asia", Color.Orange);
-
-            #region Create Territories
-            List<Territory> EuropeTerritories = new List<Territory>()
-            {
-                new Territory("Ireland", CreateArmies(GameRoot.DEFAULT_ARMIES), 
-                GameRoot.TextureResource["t001"], 
-                GameRoot.TextureResource["t001o"], 
-                Europe.OutlineColor)
-            };
-
-            List<Territory> AsiaTerritories = new List<Territory>()
-            {
-                new Territory("England", CreateArmies(GameRoot.DEFAULT_ARMIES), 
-                GameRoot.TextureResource["t002"],
-                GameRoot.TextureResource["t002o"],
-                Asia.OutlineColor)
-            };
-            #endregion
-
-            #region Set Territory Positions
-            EuropeTerritories[0].Texture.Position = new Vector2(220, 200);
-            AsiaTerritories[0].Texture.Position = new Vector2(460, 200);
-            #endregion
-
-            #region Add Territories to Continents
-            Europe.AddTerritories(EuropeTerritories);
-            Asia.AddTerritories(AsiaTerritories);
-            #endregion
-
+            Europe = new Continent("Europe", Color.CornflowerBlue, 5);
+            Asia = new Continent("Asia", Color.Orange, 2);
             // Add to boards list of Continents
             Continents.Add(Europe);
             Continents.Add(Asia);
@@ -124,6 +108,37 @@ namespace Risk_Project.Components
             // This helps us revert back to the initial continent state
             // i.e. when the continents were first created
             DefaultContinents = Continents;
+        }
+
+        private void CreateTerritories()
+        {
+            EuropeTerritories = new List<Territory>()
+            {
+                new Territory("Ireland", CreateArmies(GameRoot.DEFAULT_ARMIES),
+                GameRoot.TextureResource["t001"],
+                GameRoot.TextureResource["t001o"],
+                Europe.OutlineColor)
+            };
+
+            AsiaTerritories = new List<Territory>()
+            {
+                new Territory("England", CreateArmies(GameRoot.DEFAULT_ARMIES),
+                GameRoot.TextureResource["t002"],
+                GameRoot.TextureResource["t002o"],
+                Asia.OutlineColor)
+            };
+        }
+
+        private void SetTerritoryPositions()
+        {
+            EuropeTerritories[0].Texture.Position = new Vector2(220, 200);
+            AsiaTerritories[0].Texture.Position = new Vector2(460, 200);
+        }
+
+        private void AddTerritoriesToContinents()
+        {
+            Europe.AddTerritories(EuropeTerritories);
+            Asia.AddTerritories(AsiaTerritories);
         }
 
         private List<Unit> CreateArmies(int amount)
@@ -156,6 +171,11 @@ namespace Risk_Project.Components
         private void DistributeTerritoryUnits()
         {
             // Add units to players armies.
+
+            foreach (Player player in GameRoot.Players)
+            {
+                //player.Armies.Add()
+            }
         }
 
         public void SetMoveOrder()

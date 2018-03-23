@@ -14,14 +14,16 @@ namespace Risk_Project.World_Objects
         public string Name;
         public Color OutlineColor;
         public List<Territory> Territories;
+        public int ArmiesPerTurn;
         #endregion
 
         #region Constructor
-        public Continent(string name, Color color)
+        public Continent(string name, Color color, int armiesPerTurn)
         {
             this.Name = name;
             this.OutlineColor = color;
             this.Territories = new List<Territory>();
+            this.ArmiesPerTurn = armiesPerTurn;
         }
         #endregion
 

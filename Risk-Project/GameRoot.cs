@@ -114,7 +114,7 @@ namespace Risk_Project
         private void CreatePlayers()
         {
             Players[0].Name = "Fearon";
-            Players[0].Colour = Color.LightGreen;
+            Players[0].Colour = Color.LimeGreen;
 
             Players[1].Name = "AI";
             Players[1].Colour = Color.Maroon;
