@@ -25,6 +25,7 @@ namespace Risk_Project.World_Objects
         #endregion
 
         #region Methods
+
         public void AddTerritories(List<Territory> territories)
         {
             this.Territories.AddRange(territories);

@@ -12,7 +12,7 @@ using Risk_Project.World_Objects;
 
 namespace Risk_Project.Components
 {
-    public class Board : SimpleDrawableGameComponent
+    public class Board : DrawableGameComponent
     {
         #region Properties
         public enum Action
@@ -40,7 +40,7 @@ namespace Risk_Project.Components
         #endregion
 
         #region Constructor
-        public Board()
+        public Board(Game game) : base(game)
         {
             //GuiSkin currentSkin = new GuiSkin();
             //GuiScreen currentScreen = new GuiScreen(currentSkin);
@@ -54,17 +54,24 @@ namespace Risk_Project.Components
         {
             SpriteBatch spriteBatch = Game.Services.GetService<SpriteBatch>();
 
-            var query = Continents.SelectMany(t => t.Territories).Distinct();
-
-            foreach (var territory in query)
+            foreach (var Continent in Continents)
             {
-                territory.Draw();
+                foreach (var Territory in Continent.Territories)
+                {
+                    Territory.Draw(spriteBatch);
+                }
             }
         }
 
         public override void Update(GameTime gameTime)
         {
-            
+            foreach (var Continent in Continents)
+            {
+                foreach (var Territory in Continent.Territories)
+                {
+                    Territory.Update(gameTime);
+                }
+            }
         }
 
         public void Init()
@@ -72,6 +79,7 @@ namespace Risk_Project.Components
             Continents = new List<Continent>();
 
             CreateContinents();
+
         }
 
         private void CreateContinents()
@@ -83,13 +91,23 @@ namespace Risk_Project.Components
             #region Create Territories
             List<Territory> EuropeTerritories = new List<Territory>()
             {
-                new Territory("Ireland", CreateArmies(GameRoot.DEFAULT_ARMIES), GameRoot.TextureResource["Territories/t001"])
+                new Territory("Ireland", CreateArmies(GameRoot.DEFAULT_ARMIES), GameRoot.TextureResource["t001"], Europe.OutlineColor)
             };
 
             List<Territory> AsiaTerritories = new List<Territory>()
             {
-                new Territory("England", CreateArmies(GameRoot.DEFAULT_ARMIES), GameRoot.TextureResource["Territories/t002"])
+                new Territory("England", CreateArmies(GameRoot.DEFAULT_ARMIES), GameRoot.TextureResource["t002"], Asia.OutlineColor)
             };
+            #endregion
+
+            #region Edit Terrritory Textures
+            EuropeTerritories[0].Texture.Position = new Vector2(220, 200);
+            AsiaTerritories[0].Texture.Position = new Vector2(460, 200);
+            #endregion
+
+            #region Add Territories to Continents
+            Europe.AddTerritories(EuropeTerritories);
+            Asia.AddTerritories(AsiaTerritories);
             #endregion
 
             // Add to boards list of Continents

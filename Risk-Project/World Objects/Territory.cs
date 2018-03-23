@@ -36,13 +36,21 @@ namespace Risk_Project.World_Objects
 
         public Sprite Texture { get; set; }
 
+        public Sprite OutlineTexture { get; set; }
+
+        public Texture2D Txt { get; set; }
+
         //Constructor
-        public Territory(string name, List<Unit> armies, Texture2D texture)
+        public Territory(string name, List<Unit> armies, Texture2D texture, Color outlineColor)
         {
             this.Name = name;
             this.Colour = defaultColor;
             this.Armies = armies;
+            this.Txt = texture;
             this.Texture = new Sprite(texture);
+            this.OutlineTexture = new Sprite(texture);
+            this.OutlineTexture.Scale += new Vector2(0.01f); // Make outline bigger.
+            this.OutlineTexture.Color = outlineColor;
             this.Armies = armies;
             this.DefaultArmies = Armies;
         }
@@ -50,11 +58,12 @@ namespace Risk_Project.World_Objects
         //Methods
         public void Update(GameTime gameTime)
         {
-
+            this.OutlineTexture.Position = Texture.Position;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            OutlineTexture.Draw(spriteBatch);
             Texture.Draw(spriteBatch);
         }
         

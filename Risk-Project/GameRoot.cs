@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using MonoGame.Extended;
+using MonoGame.Extended.ViewportAdapters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -19,7 +20,7 @@ namespace Risk_Project
         public static Dictionary<string, Texture2D> 
             TextureResource = new Dictionary<string, Texture2D>();
         private List<Player> players;
-        private Camera2D currentCamera;
+        public static Camera2D currentCamera;
         private Board currentBoard;
         #endregion
 
@@ -33,6 +34,9 @@ namespace Risk_Project
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            IsMouseVisible = true;
+            IsFixedTimeStep = false;
         }
 
         protected override void Initialize()
@@ -45,9 +49,13 @@ namespace Risk_Project
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            Services.AddService(spriteBatch);
+
+            var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
+            currentCamera = new Camera2D(viewportAdapter);
 
             // Load Texture Resources
-            ContentLoader.ContentLoad<Texture2D>(Content, "Textures");
+            TextureResource = ContentLoader.ContentLoad<Texture2D>(Content, "Textures\\Territories");
 
             CreateBoard();
         }
@@ -62,16 +70,18 @@ namespace Risk_Project
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-
+            currentBoard.Update(gameTime);
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Gray);
 
-
+            spriteBatch.Begin(blendState: BlendState.AlphaBlend, transformMatrix: currentCamera.GetViewMatrix());
+            currentBoard.Draw(gameTime);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
@@ -115,7 +125,7 @@ namespace Risk_Project
 
         private void CreateBoard()
         {
-            currentBoard = new Board();
+            currentBoard = new Board(this);
         }
         #endregion
     }
