@@ -178,7 +178,7 @@ namespace Risk_Project.Components
             }
         }
 
-        public void SetMoveOrder()
+        private void SetMoveOrder()
         {
 
         }
