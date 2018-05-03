@@ -9,6 +9,7 @@ namespace Risk_Project.Players
     public class Player
     {
         #region Properties
+
         public enum State
         {
             Idle,
@@ -18,27 +19,26 @@ namespace Risk_Project.Players
         }
 
         public State PlayerState { get; set; }
-
         public string Name { get; set; }
-
         public List<Unit> Armies { get; set; }
-
         public List<Territory> Territories { get; set; }
-
         private List<Order> Orders { get; set; }
-
         public Color Colour { get; set; }
+
         #endregion
 
         #region Constructor
+
         public Player()
         {
             this.PlayerState = State.Idle;
 
         }
+
         #endregion
 
         #region Methods
+
         public override string ToString()
         {
             return ("Player: " + Name 
@@ -68,6 +68,7 @@ namespace Risk_Project.Players
         {
             this.Orders.Clear();
         }
+
         #endregion
     }
 }

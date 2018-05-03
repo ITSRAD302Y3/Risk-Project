@@ -20,13 +20,16 @@ namespace Risk_Project.Players
         public int Amount { get; set; }
         public Action CurrentAction;
         public Territory Destination { get; set; }
+
         #endregion
 
         #region Constructor
+
         public Order()
         {
 
         }
+
         #endregion
     }
 }

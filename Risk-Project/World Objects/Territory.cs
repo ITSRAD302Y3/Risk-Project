@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Sprites;
+using Risk_Project.Entities;
 using Risk_Project.Players;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,8 @@ namespace Risk_Project.World_Objects
 {
     public class Territory
     {
-        //Three states of a territory
+        #region Properties
+
         public enum State
         {
             Unoccupied,
@@ -22,47 +23,48 @@ namespace Risk_Project.World_Objects
         }
         public State Status;
 
-        //Properties
         public string Name { get; set; }
-
         public Color Colour { get; set; }
         private Color defaultColor = new Color(200, 200, 200);
-
         public List<Unit> Armies { get; set; }   //List of temporary units currently in the boards territory 
-
         public List<Unit> DefaultArmies { get; set; }
-
         public Player Parent { get; set; }
-
         public Sprite Texture { get; set; }
-
         public Sprite TextureOutline { get; set; }
 
-        //Constructor
+        #endregion
+
+        #region Constructor
+
         public Territory(string name, List<Unit> armies, Texture2D texture, Texture2D textureOutline, Color outlineColor)
         {
-            this.Name = name;
-            this.Colour = defaultColor;
-            this.Armies = armies;
-            this.Texture = new Sprite(texture);
-            this.TextureOutline = new Sprite(textureOutline);
-            this.TextureOutline.Color = outlineColor;
-            this.Armies = armies;
-            this.DefaultArmies = Armies;
+            Name = name;
+            Colour = defaultColor;
+            Armies = armies;
+            Texture = new Sprite(texture, new Vector2(0,0), 1);
+            TextureOutline = new Sprite(textureOutline, new Vector2(0,0), 1);
+            TextureOutline.Colour = outlineColor;
+            Armies = armies;
+            DefaultArmies = Armies;
         }
 
-        //Methods
+        #endregion
+
+        #region Methods
+
         public void Update(GameTime gameTime)
         {
-            this.Texture.Color = Colour;
-            this.TextureOutline.Position = Texture.Position;
+            Texture.Update(gameTime);
+            TextureOutline.Update(gameTime);
+            Texture.Colour = Colour;
+            TextureOutline.Position = Texture.Position;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             TextureOutline.Draw(spriteBatch);
             Texture.Draw(spriteBatch);
-            spriteBatch.DrawString(GameRoot.FontTerritory, GetArmies().ToString(), Texture.WorldPosition, Color.Black);
+            spriteBatch.DrawString(GameRoot.SystemFontBold, GetArmies().ToString(), Texture.CentrePosition, Color.Black);
         }
         
         //Display units in territory
@@ -113,5 +115,7 @@ namespace Risk_Project.World_Objects
 
         //    }
         //}
+
+        #endregion
     }
 }

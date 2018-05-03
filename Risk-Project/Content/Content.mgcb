@@ -37,13 +37,6 @@
 /processorParam:TextureFormat=Color
 /build:Textures/Territories/t002.png
 
-#begin Fonts/system.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Fonts/system.spritefont
-
 #begin Textures/Territories/t001o.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -67,4 +60,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Textures/Territories/t002o.png
+
+#begin Fonts/systemBold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/systemBold.spritefont
+
+#begin Fonts/systemLight.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/systemLight.spritefont
 

@@ -11,13 +11,16 @@ namespace Risk_Project.World_Objects
     public class Continent
     {
         #region Properties
+
         public string Name;
         public Color OutlineColor;
         public List<Territory> Territories;
         public int ArmiesPerTurn;
+
         #endregion
 
         #region Constructor
+
         public Continent(string name, Color color, int armiesPerTurn)
         {
             this.Name = name;
@@ -25,6 +28,7 @@ namespace Risk_Project.World_Objects
             this.Territories = new List<Territory>();
             this.ArmiesPerTurn = armiesPerTurn;
         }
+
         #endregion
 
         #region Methods
@@ -48,6 +52,7 @@ namespace Risk_Project.World_Objects
         {
 
         }
+
         #endregion
     }
 }

@@ -43,7 +43,11 @@
   <ItemGroup>
     <Compile Include="Components\Board.cs" />
     <Compile Include="Components\Button.cs" />
+    <Compile Include="Components\Camera.cs" />
     <Compile Include="Components\ContentLoader.cs" />
+    <Compile Include="Components\Helpers.cs" />
+    <Compile Include="Engines\InputEngine.cs" />
+    <Compile Include="Entities\Sprite.cs" />
     <Compile Include="GameRoot.cs" />
     <Compile Include="Players\Player.cs" />
     <Compile Include="Players\Order.cs" />
@@ -55,23 +59,11 @@
     <Compile Include="World Objects\Unit.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Extended, Version=1.0.617.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Extended.1.0.617\lib\portable-net45+win8+wpa81\MonoGame.Extended.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Gui, Version=1.0.617.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Extended.Gui.1.0.617\lib\portable-net45+win8+wpa81\MonoGame.Extended.Gui.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Input, Version=1.0.617.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Extended.Input.1.0.617\lib\portable-net45+win8+wpa81\MonoGame.Extended.Input.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -82,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="app.config" />
     <None Include="app.manifest" />
     <None Include="packages.config" />
   </ItemGroup>
