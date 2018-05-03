@@ -39,12 +39,12 @@ namespace Risk_Project.Components
         public Phase CurrentPhase;
         #endregion
 
-        #region Continent Properties
+        #region Continent Variables
         private Continent Europe;
         private Continent Asia;
         #endregion
 
-        #region Territory Properties
+        #region Territory Variables
         private List<Territory> EuropeTerritories;
         private List<Territory> AsiaTerritories;
         #endregion
@@ -84,7 +84,7 @@ namespace Risk_Project.Components
             }
         }
 
-        public void Init()
+        private void Init()
         {
             Continents = new List<Continent>();
 
@@ -106,7 +106,7 @@ namespace Risk_Project.Components
 
             // Store default Continents for Game Restart
             // This helps us revert back to the initial continent state
-            // i.e. when the continents were first created
+            // i.e. when the continents are first created
             DefaultContinents = Continents;
         }
 
