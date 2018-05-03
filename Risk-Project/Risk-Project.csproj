@@ -42,7 +42,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Components\Board.cs" />
-    <Compile Include="Components\Button.cs" />
     <Compile Include="Components\Camera.cs" />
     <Compile Include="Components\ContentLoader.cs" />
     <Compile Include="Components\Helpers.cs" />
@@ -54,6 +53,7 @@
     <Compile Include="Players\PlayerAI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Button.cs" />
     <Compile Include="World Objects\Continent.cs" />
     <Compile Include="World Objects\Territory.cs" />
     <Compile Include="World Objects\Unit.cs" />

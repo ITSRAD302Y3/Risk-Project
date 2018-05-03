@@ -15,8 +15,8 @@ namespace Risk_Project
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        private int _width = 800;
-        private int _height = 480;
+        private int _width = 1280;
+        private int _height = 720;
 
         #region Properties
 
@@ -27,8 +27,8 @@ namespace Risk_Project
                 return new Vector2(1920, 1080);
             }
         }
-        public static Dictionary<string, Texture2D> 
-            TextureResource = new Dictionary<string, Texture2D>();
+        public static Dictionary<string, Texture2D> TextureResource;
+        public static Dictionary<string, Texture2D> BackgroundResource;
         public static List<Player> Players;
         private Camera currentCamera;
         private Board currentBoard;
@@ -80,7 +80,12 @@ namespace Risk_Project
             SystemFontLight = Content.Load<SpriteFont>("Fonts\\systemLight");
 
             // Load Texture Resources
+            TextureResource = new Dictionary<string, Texture2D>();
             TextureResource = ContentLoader.ContentLoad<Texture2D>(Content, "Textures\\Territories");
+
+            // Load Background Resources
+            BackgroundResource = new Dictionary<string, Texture2D>();
+            BackgroundResource = ContentLoader.ContentLoad<Texture2D>(Content, "Backgrounds\\");
 
             CreateBoard();
         }

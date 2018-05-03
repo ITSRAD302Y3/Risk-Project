@@ -8,12 +8,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Risk_Project.World_Objects;
 using Risk_Project.Players;
+using Risk_Project.Entities;
 
 namespace Risk_Project.Components
 {
     public class Board : DrawableGameComponent
     {
         #region Properties
+
         public enum Action
         {
             Inspect,
@@ -35,41 +37,39 @@ namespace Risk_Project.Components
         private List<Continent> DefaultContinents;
         public Action CurrentAction;
         public Phase CurrentPhase;
+
+        private Texture2D background;
+
         #endregion
 
         #region Continent Variables
+
         private Continent Europe;
         private Continent Asia;
+
         #endregion
 
         #region Territory Variables
+
         private List<Territory> EuropeTerritories;
         private List<Territory> AsiaTerritories;
+
         #endregion
 
         #region Constructor
+
         public Board(Game game) : base(game)
         {
             Init();
         }
+
         #endregion
 
         #region Methods
-        public override void Draw(GameTime gameTime)
-        {
-            SpriteBatch spriteBatch = Game.Services.GetService<SpriteBatch>();
-
-            foreach (var Continent in Continents)
-            {
-                foreach (var Territory in Continent.Territories)
-                {
-                    Territory.Draw(spriteBatch);
-                }
-            }
-        }
 
         public override void Update(GameTime gameTime)
         {
+            // Update Territories
             foreach (var Continent in Continents)
             {
                 foreach (var Territory in Continent.Territories)
@@ -79,8 +79,27 @@ namespace Risk_Project.Components
             }
         }
 
+        public override void Draw(GameTime gameTime)
+        {
+            SpriteBatch spriteBatch = Game.Services.GetService<SpriteBatch>();
+
+            // Draw Background
+            spriteBatch.Draw(background, new Rectangle(Point.Zero, Camera.WorldBound.ToPoint()), Color.White);
+
+            // Draw Territories
+            foreach (var Continent in Continents)
+            {
+                foreach (var Territory in Continent.Territories)
+                {
+                    Territory.Draw(spriteBatch);
+                }
+            }
+        }
+
         private void Init()
         {
+            background = GameRoot.BackgroundResource["background"];
+
             Continents = new List<Continent>();
 
             CreateContinents();
@@ -126,7 +145,7 @@ namespace Risk_Project.Components
 
         private void SetTerritoryPositions()
         {
-            EuropeTerritories[0].Texture.Position = new Vector2(220, 200);
+            EuropeTerritories[0].Texture.Position = new Vector2(300, 400);
             AsiaTerritories[0].Texture.Position = new Vector2(460, 200);
         }
 
@@ -192,6 +211,7 @@ namespace Risk_Project.Components
         {
 
         }
+
         #endregion
     }
 }

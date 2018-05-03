@@ -1,23 +1,31 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Risk_Project.Components;
+using Risk_Project.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
 
-namespace Risk_Project.Components
+namespace Risk_Project.UI
 {
     class Button
     {
         #region Properties
         public string Name;
+        private Sprite texture;
+        private SpriteFont UIFont;
         private Board.Action buttonAction;
         #endregion
 
         #region Constructor
-        public Button(Board.Action action)
+        public Button(string name, Board.Action action, SpriteFont uiFont, Sprite texture)
         {
-            this.buttonAction = action;
+            Name = name;
+            buttonAction = action;
+            UIFont = uiFont;
+            this.texture = texture;
         }
         #endregion
 
@@ -49,6 +57,7 @@ namespace Risk_Project.Components
                 // Zoom camera out.
             }
         }
+
         #endregion
     }
 }
