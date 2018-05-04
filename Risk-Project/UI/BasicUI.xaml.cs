@@ -59,6 +59,22 @@ namespace EmptyKeys.UserInterface.Generated {
         
         private TextBlock e_8;
         
+        private GroupBox e_9;
+        
+        private StackPanel e_10;
+        
+        private TextBlock txtblkTurns;
+        
+        private StackPanel e_11;
+        
+        private Button e_12;
+        
+        private Button e_15;
+        
+        private Button e_18;
+        
+        private Button btnEndTurn;
+        
         public BasicUI() : 
                 base() {
             this.Initialize();
@@ -195,6 +211,122 @@ namespace EmptyKeys.UserInterface.Generated {
             this.e_7.Children.Add(this.e_8);
             this.e_8.Name = "e_8";
             this.e_8.Text = "Game";
+            // e_9 element
+            this.e_9 = new GroupBox();
+            this.e_0.Children.Add(this.e_9);
+            this.e_9.Name = "e_9";
+            this.e_9.Height = 180F;
+            this.e_9.Width = 175F;
+            this.e_9.Margin = new Thickness(20F, 20F, 20F, 20F);
+            this.e_9.HorizontalAlignment = HorizontalAlignment.Right;
+            this.e_9.VerticalAlignment = VerticalAlignment.Top;
+            this.e_9.Background = new SolidColorBrush(new ColorW(23, 23, 23, 191));
+            this.e_9.BorderBrush = new SolidColorBrush(new ColorW(0, 0, 0, 255));
+            this.e_9.Foreground = new SolidColorBrush(new ColorW(201, 201, 201, 255));
+            // e_10 element
+            this.e_10 = new StackPanel();
+            this.e_9.Content = this.e_10;
+            this.e_10.Name = "e_10";
+            this.e_10.Orientation = Orientation.Vertical;
+            // txtblkTurns element
+            this.txtblkTurns = new TextBlock();
+            this.e_10.Children.Add(this.txtblkTurns);
+            this.txtblkTurns.Name = "txtblkTurns";
+            this.txtblkTurns.Margin = new Thickness(20F, 20F, 20F, 20F);
+            this.txtblkTurns.HorizontalAlignment = HorizontalAlignment.Center;
+            this.txtblkTurns.VerticalAlignment = VerticalAlignment.Top;
+            this.txtblkTurns.Text = "Turn 1";
+            // e_11 element
+            this.e_11 = new StackPanel();
+            this.e_10.Children.Add(this.e_11);
+            this.e_11.Name = "e_11";
+            this.e_11.HorizontalAlignment = HorizontalAlignment.Center;
+            this.e_11.Orientation = Orientation.Horizontal;
+            // e_12 element
+            this.e_12 = new Button();
+            this.e_11.Children.Add(this.e_12);
+            this.e_12.Name = "e_12";
+            this.e_12.Height = 40F;
+            this.e_12.Width = 40F;
+            this.e_12.Margin = new Thickness(5F, 5F, 5F, 5F);
+            Func<UIElement, UIElement> e_12_ctFunc = e_12_ctMethod;
+            ControlTemplate e_12_ct = new ControlTemplate(typeof(Button), e_12_ctFunc);
+            this.e_12.Template = e_12_ct;
+            this.e_12.Content = "O";
+            // e_15 element
+            this.e_15 = new Button();
+            this.e_11.Children.Add(this.e_15);
+            this.e_15.Name = "e_15";
+            this.e_15.Height = 40F;
+            this.e_15.Width = 40F;
+            this.e_15.Margin = new Thickness(5F, 5F, 5F, 5F);
+            Func<UIElement, UIElement> e_15_ctFunc = e_15_ctMethod;
+            ControlTemplate e_15_ct = new ControlTemplate(typeof(Button), e_15_ctFunc);
+            this.e_15.Template = e_15_ct;
+            this.e_15.Content = "+";
+            // e_18 element
+            this.e_18 = new Button();
+            this.e_11.Children.Add(this.e_18);
+            this.e_18.Name = "e_18";
+            this.e_18.Height = 40F;
+            this.e_18.Width = 40F;
+            this.e_18.Margin = new Thickness(5F, 5F, 5F, 5F);
+            Func<UIElement, UIElement> e_18_ctFunc = e_18_ctMethod;
+            ControlTemplate e_18_ct = new ControlTemplate(typeof(Button), e_18_ctFunc);
+            this.e_18.Template = e_18_ct;
+            this.e_18.Content = "->";
+            // btnEndTurn element
+            this.btnEndTurn = new Button();
+            this.e_10.Children.Add(this.btnEndTurn);
+            this.btnEndTurn.Name = "btnEndTurn";
+            this.btnEndTurn.Height = 40F;
+            this.btnEndTurn.Margin = new Thickness(15F, 15F, 15F, 15F);
+            this.btnEndTurn.Content = "End Turn";
+        }
+        
+        private static UIElement e_12_ctMethod(UIElement parent) {
+            // e_13 element
+            Grid e_13 = new Grid();
+            e_13.Parent = parent;
+            e_13.Name = "e_13";
+            // e_14 element
+            Ellipse e_14 = new Ellipse();
+            e_13.Children.Add(e_14);
+            e_14.Name = "e_14";
+            e_14.Fill = new SolidColorBrush(new ColorW(128, 128, 128, 255));
+            e_14.Stroke = new SolidColorBrush(new ColorW(0, 0, 0, 255));
+            e_14.StrokeThickness = 0F;
+            return e_13;
+        }
+        
+        private static UIElement e_15_ctMethod(UIElement parent) {
+            // e_16 element
+            Grid e_16 = new Grid();
+            e_16.Parent = parent;
+            e_16.Name = "e_16";
+            // e_17 element
+            Ellipse e_17 = new Ellipse();
+            e_16.Children.Add(e_17);
+            e_17.Name = "e_17";
+            e_17.Fill = new SolidColorBrush(new ColorW(128, 128, 128, 255));
+            e_17.Stroke = new SolidColorBrush(new ColorW(0, 0, 0, 255));
+            e_17.StrokeThickness = 0F;
+            return e_16;
+        }
+        
+        private static UIElement e_18_ctMethod(UIElement parent) {
+            // e_19 element
+            Grid e_19 = new Grid();
+            e_19.Parent = parent;
+            e_19.Name = "e_19";
+            // e_20 element
+            Ellipse e_20 = new Ellipse();
+            e_19.Children.Add(e_20);
+            e_20.Name = "e_20";
+            e_20.Fill = new SolidColorBrush(new ColorW(128, 128, 128, 255));
+            e_20.Stroke = new SolidColorBrush(new ColorW(0, 0, 0, 255));
+            e_20.StrokeThickness = 0F;
+            return e_19;
         }
     }
 }

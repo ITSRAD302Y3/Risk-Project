@@ -50,5 +50,45 @@
             </StackPanel>
         </Button>
 
+        <GroupBox Margin="20"
+                  HorizontalAlignment="Right" 
+                  VerticalAlignment="Top" 
+                  Background="#BF171717" Foreground="#FFC9C9C9" 
+                  BorderBrush="Black" Height="180" Width="175">
+            <StackPanel Orientation="Vertical">
+                <TextBlock x:Name="txtblkTurns" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">Turn 1</TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Width="40" Content="O" Height="40" Margin="5">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Ellipse Stroke="Black" Fill="Gray" StrokeThickness="0"></Ellipse>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Width="40" Content="+" Height="40" Margin="5">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Ellipse Stroke="Black" StrokeThickness="0" Fill="Gray"></Ellipse>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Width="40" Content="->" Height="40" Margin="5">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Ellipse Stroke="Black" StrokeThickness="0" Fill="Gray"></Ellipse>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+                <Button x:Name="btnEndTurn" Content="End Turn" Margin="15" Height="40" />
+            </StackPanel>
+        </GroupBox>
+
     </Grid>
 </ek:UIRoot>
