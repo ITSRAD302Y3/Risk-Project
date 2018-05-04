@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="UI\BasicUIViewModel.cs" />
     <Compile Include="Components\Board.cs" />
     <Compile Include="Components\Camera.cs" />
     <Compile Include="Components\Helpers.cs" />

@@ -10,6 +10,8 @@ using EmptyKeys.UserInterface;
 using EmptyKeys.UserInterface.Generated;
 using EmptyKeys.UserInterface.Input;
 using System;
+using Risk_Project.UI;
+using System.Collections.ObjectModel;
 
 namespace Risk_Project
 {
@@ -21,6 +23,7 @@ namespace Risk_Project
         private int _width = 1280;
         private int _height = 720;
         private BasicUI basicUI;
+        private BasicUIViewModel viewModel;
         private int nativeScreenWidth;
         private int nativeScreenHeight;
 
@@ -202,6 +205,9 @@ namespace Risk_Project
 
             Viewport viewport = GraphicsDevice.Viewport;
             basicUI = new BasicUI(viewport.Width, viewport.Height);
+            // Load View Model
+            viewModel = new BasicUIViewModel();
+            basicUI.DataContext = viewModel;
 
             FontManager.Instance.LoadFonts(Content);
             // Load Image and Sound content if necessary

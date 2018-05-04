@@ -6,28 +6,33 @@
              xmlns:ek="clr-namespace:EmptyKeys.UserInterface.Designer;assembly=EmptyKeys.UserInterface.Designer"
              xmlns:local="clr-namespace:Risk_Project_WPF_UCL"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300" Background="Transparent">
+             d:DesignHeight="720" d:DesignWidth="1280" Background="Transparent">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="1.3*"/>
-            <ColumnDefinition Width="1.3*"/>
-        </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Vertical" Grid.RowSpan="3">
-            <GroupBox Header="Orders">
-                <ListBox x:Name="lbxOrders" MinHeight="100"/>
+        <StackPanel Orientation="Vertical" Grid.RowSpan="3" Width="300" HorizontalAlignment="Left">
+            <GroupBox Header="Orders" Width="300" Background="#BF171717" Foreground="#FFC9C9C9" BorderBrush="Black">
+                <ListBox x:Name="lbxOrders" ItemsSource="{Binding orders}" MinHeight="300" >
+                    <ListBox.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF7E7E7E" Offset="0"/>
+                            <GradientStop Color="#FF464646" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ListBox.Background>
+                </ListBox>
             </GroupBox>
-            <GroupBox Header="Players">
-                <ListBox x:Name="lbxPlayers" MinHeight="100"/>
+            <GroupBox Header="Players" Width="300" Background="#BF171717" BorderBrush="Black" Foreground="#FFC9C9C9">
+                <ListBox x:Name="lbxPlayers" ItemsSource="{Binding players}" MinHeight="300" >
+                    <ListBox.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF7E7E7E" Offset="0"/>
+                            <GradientStop Color="#FF464646" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ListBox.Background>
+                </ListBox>
             </GroupBox>
         </StackPanel>
 
+        <Button x:Name="btnGame" Content="Game" Width="200" Height="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#FF5FFD5F" BorderBrush="#FF1F1F1F" />
     </Grid>
 </ek:UIRoot>
