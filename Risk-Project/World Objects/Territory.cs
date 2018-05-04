@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Risk_Project.Components;
 using Risk_Project.Entities;
 using Risk_Project.Players;
 using System;
@@ -31,17 +32,22 @@ namespace Risk_Project.World_Objects
         public Player Parent { get; set; }
         public Sprite Texture { get; set; }
         public Sprite TextureOutline { get; set; }
+        public Sprite BackgroundOutline { get; set; }
 
         #endregion
 
         #region Constructor
 
-        public Territory(string name, List<Unit> armies, Texture2D texture, Texture2D textureOutline, Color outlineColor)
+        public Territory(string name, List<Unit> armies, 
+            Texture2D texture, Texture2D textureOutline, Texture2D backgroundOutline, 
+            Color outlineColor)
         {
             Name = name;
             Colour = defaultColor;
             Armies = armies;
             Texture = new Sprite(texture, new Vector2(0,0), 1);
+            BackgroundOutline = new Sprite(backgroundOutline, new Vector2(0, 0), 1);
+            BackgroundOutline.Colour = Board.BackgroundOutline;
             TextureOutline = new Sprite(textureOutline, new Vector2(0,0), 1);
             TextureOutline.Colour = outlineColor;
             Armies = armies;
@@ -54,14 +60,17 @@ namespace Risk_Project.World_Objects
 
         public void Update(GameTime gameTime)
         {
+            BackgroundOutline.Update(gameTime);
             Texture.Update(gameTime);
             TextureOutline.Update(gameTime);
             Texture.Colour = Colour;
+            BackgroundOutline.Position = Texture.Position;
             TextureOutline.Position = Texture.Position;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            BackgroundOutline.Draw(spriteBatch);
             TextureOutline.Draw(spriteBatch);
             Texture.Draw(spriteBatch);
             spriteBatch.DrawString(GameRoot.SystemFontBold, GetArmies().ToString(), Texture.CentrePosition, Color.Black);
@@ -99,7 +108,7 @@ namespace Risk_Project.World_Objects
                 }
                 catch (NullReferenceException)
                 {
-                    this.Colour = Color.Black;
+                    this.Colour = Color.White;
                     Console.WriteLine("Parent to {0} is NULL !", Name);
                 }
         }

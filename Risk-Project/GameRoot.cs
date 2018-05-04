@@ -121,7 +121,7 @@ namespace Risk_Project
             base.Draw(gameTime);
         }
 
-        #region Methods
+        #region Initialize
 
         private void GameInit()
         {
@@ -145,10 +145,23 @@ namespace Risk_Project
             currentCamera = new Camera(game, Vector2.Zero, WorldBounds);
         }
 
+        private void CreateBoard()
+        {
+            currentBoard = new Board(this);
+        }
+
+        #endregion
+
+        #region Game Controls
+
         public static void GameRestart()
         {
 
         }
+
+        #endregion
+
+        #region Player Controls
 
         private void InitPlayers()
         {
@@ -175,11 +188,6 @@ namespace Risk_Project
             // Remove players if eliminated.
             // Game Over if current player is eliminated.
             // Win condition if current player conquered all continents.
-        }
-
-        private void CreateBoard()
-        {
-            currentBoard = new Board(this);
         }
 
         #endregion

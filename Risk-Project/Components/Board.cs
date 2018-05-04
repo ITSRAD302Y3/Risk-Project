@@ -38,6 +38,7 @@ namespace Risk_Project.Components
         public Action CurrentAction;
         public Phase CurrentPhase;
 
+        public static Color BackgroundOutline;
         private Texture2D texture;
         private Queue<Texture2D> textures;
         private TimeSpan frameTime;
@@ -105,7 +106,7 @@ namespace Risk_Project.Components
                 new Rectangle(Point.Zero, Camera.WorldBound.ToPoint()), 
                 new Rectangle(Point.Zero, new Point(
                     Helper.GraphicsDevice.Viewport.Bounds.Width,
-                    Helper.GraphicsDevice.Viewport.Bounds.Height)), Color.Gray);
+                    Helper.GraphicsDevice.Viewport.Bounds.Height)), Color.LightSlateGray);
 
             // Draw Territories
             foreach (var Continent in Continents)
@@ -119,6 +120,7 @@ namespace Risk_Project.Components
 
         private void Init()
         {
+            BackgroundOutline = new Color(57, 69, 73);
             textures = GameRoot.BackgroundResource;
 
             if (textures != null)
@@ -158,6 +160,7 @@ namespace Risk_Project.Components
                 new Territory("Ireland", CreateArmies(GameRoot.DEFAULT_ARMIES),
                 GameRoot.TextureResource["t001"],
                 GameRoot.TextureResource["t001o"],
+                GameRoot.TextureResource["t001o2"],
                 Europe.OutlineColor)
             };
 
@@ -166,6 +169,7 @@ namespace Risk_Project.Components
                 new Territory("England", CreateArmies(GameRoot.DEFAULT_ARMIES),
                 GameRoot.TextureResource["t002"],
                 GameRoot.TextureResource["t002o"],
+                GameRoot.TextureResource["t002o2"],
                 Asia.OutlineColor)
             };
         }
