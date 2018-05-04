@@ -93,7 +93,7 @@ namespace Risk_Project
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferMultiSampling = true;
             graphics.SynchronizeWithVerticalRetrace = true;
-            graphics.IsFullScreen = false;
+            graphics.IsFullScreen = true;
             graphics.PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8;
         }
 
@@ -201,7 +201,7 @@ namespace Risk_Project
 
         private void LoadEmptyKeysUI()
         {
-            FontManager.DefaultFont = Engine.Instance.Renderer.CreateFont(SystemFontBold);
+            FontManager.DefaultFont = Engine.Instance.Renderer.CreateFont(SystemFontLight);
 
             Viewport viewport = GraphicsDevice.Viewport;
             basicUI = new BasicUI(viewport.Width, viewport.Height);

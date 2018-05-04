@@ -10,29 +10,45 @@
 
     <Grid>
 
-        <StackPanel Orientation="Vertical" Grid.RowSpan="3" Width="300" HorizontalAlignment="Left">
-            <GroupBox Header="Orders" Width="300" Background="#BF171717" Foreground="#FFC9C9C9" BorderBrush="Black">
-                <ListBox x:Name="lbxOrders" ItemsSource="{Binding orders}" MinHeight="300" >
-                    <ListBox.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FF7E7E7E" Offset="0"/>
-                            <GradientStop Color="#FF464646" Offset="1"/>
-                        </LinearGradientBrush>
-                    </ListBox.Background>
-                </ListBox>
+        <StackPanel Orientation="Vertical" Grid.RowSpan="3" Width="250" HorizontalAlignment="Left">
+            <GroupBox Background="#BF171717" Foreground="#FFC9C9C9" BorderBrush="Black">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock x:Name="txtblkOrders" Margin="0,15,0,0">Orders</TextBlock>
+                    <ListBox x:Name="lbxOrders" ItemsSource="{Binding orders}" MinHeight="250" >
+                        <ListBox.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF7E7E7E" Offset="0"/>
+                                <GradientStop Color="#FF464646" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ListBox.Background>
+                    </ListBox>
+                </StackPanel>
             </GroupBox>
-            <GroupBox Header="Players" Width="300" Background="#BF171717" BorderBrush="Black" Foreground="#FFC9C9C9">
-                <ListBox x:Name="lbxPlayers" ItemsSource="{Binding players}" MinHeight="300" >
-                    <ListBox.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FF7E7E7E" Offset="0"/>
-                            <GradientStop Color="#FF464646" Offset="1"/>
-                        </LinearGradientBrush>
-                    </ListBox.Background>
-                </ListBox>
+            <GroupBox Background="#BF171717" BorderBrush="Black" Foreground="#FFC9C9C9" Margin="0,20,0,0">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock x:Name="txtblkPlayers" Margin="0,15,0,0">Players</TextBlock>
+                    <ListBox x:Name="lbxPlayers" ItemsSource="{Binding players}" MinHeight="250" >
+                        <ListBox.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF7E7E7E" Offset="0"/>
+                                <GradientStop Color="#FF464646" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ListBox.Background>
+                    </ListBox>
+                </StackPanel>
             </GroupBox>
         </StackPanel>
 
-        <Button x:Name="btnGame" Content="Game" Width="200" Height="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#FF5FFD5F" BorderBrush="#FF1F1F1F" />
+        <StackPanel Orientation="Horizontal" Margin="250,0,0,0" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Height="35" Width="200">
+            <Button x:Name="btnZoomIn" Content="+" Width="50"/>
+            <Button x:Name="btnZoomOut" Content="-" Width="50"/>
+        </StackPanel>
+
+        <Button x:Name="btnGame" Width="200" Height="50" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock>Game</TextBlock>
+            </StackPanel>
+        </Button>
+
     </Grid>
 </ek:UIRoot>
