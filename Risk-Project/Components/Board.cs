@@ -38,7 +38,10 @@ namespace Risk_Project.Components
         public Action CurrentAction;
         public Phase CurrentPhase;
 
-        private Texture2D background;
+        private Texture2D texture;
+        private Queue<Texture2D> textures;
+        private TimeSpan frameTime;
+        public float FrameSpeed = 25;
 
         #endregion
 
@@ -79,12 +82,30 @@ namespace Risk_Project.Components
             }
         }
 
+        public void UpdateAnimation(GameTime gameTime)
+        {
+            // Track how much time has passed ...
+            frameTime += gameTime.ElapsedGameTime;
+
+            // If it's greater than the frame time then move to the next frame ...
+            if (frameTime.Milliseconds >= FrameSpeed)
+            {
+                texture = textures.Dequeue();
+                textures.Enqueue(texture);
+                frameTime = TimeSpan.Zero;
+            }
+        }
+
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch spriteBatch = Game.Services.GetService<SpriteBatch>();
 
             // Draw Background
-            spriteBatch.Draw(background, new Rectangle(Point.Zero, Camera.WorldBound.ToPoint()), Color.White);
+            spriteBatch.Draw(texture, 
+                new Rectangle(Point.Zero, Camera.WorldBound.ToPoint()), 
+                new Rectangle(Point.Zero, new Point(
+                    Helper.GraphicsDevice.Viewport.Bounds.Width,
+                    Helper.GraphicsDevice.Viewport.Bounds.Height)), Color.Gray);
 
             // Draw Territories
             foreach (var Continent in Continents)
@@ -98,7 +119,13 @@ namespace Risk_Project.Components
 
         private void Init()
         {
-            background = GameRoot.BackgroundResource["background"];
+            textures = GameRoot.BackgroundResource;
+
+            if (textures != null)
+            {
+                texture = textures.Dequeue();
+                textures.Enqueue(texture);
+            }
 
             Continents = new List<Continent>();
 

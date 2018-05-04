@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Input;
 using Risk_Project.Players;
 using Risk_Project.Components;
 using Risk_Project.World_Objects;
-using Loader;
 using InputManager;
 
 namespace Risk_Project
@@ -28,7 +27,7 @@ namespace Risk_Project
             }
         }
         public static Dictionary<string, Texture2D> TextureResource;
-        public static Dictionary<string, Texture2D> BackgroundResource;
+        public static Queue<Texture2D> BackgroundResource;
         public static List<Player> Players;
         private Camera currentCamera;
         private Board currentBoard;
@@ -81,11 +80,11 @@ namespace Risk_Project
 
             // Load Texture Resources
             TextureResource = new Dictionary<string, Texture2D>();
-            TextureResource = ContentLoader.ContentLoad<Texture2D>(Content, "Textures\\Territories");
+            TextureResource = Loader.ContentLoad<Texture2D>(Content, "Textures\\Territories");
 
             // Load Background Resources
-            BackgroundResource = new Dictionary<string, Texture2D>();
-            BackgroundResource = ContentLoader.ContentLoad<Texture2D>(Content, "Backgrounds\\");
+            BackgroundResource = new Queue<Texture2D>();
+            BackgroundResource = Loader.ContentLoadQueue<Texture2D>(Content, "Backgrounds\\");
 
             CreateBoard();
         }
@@ -100,6 +99,7 @@ namespace Risk_Project
                 Exit();
 
             currentBoard.Update(gameTime);
+            currentBoard.UpdateAnimation(gameTime);
 
             if (currentCamera != null && InputEngine.IsMouseRightHeld())
                 Camera.Follow((InputEngine.MousePosition + Camera.CamPos), Helper.GraphicsDevice.Viewport, currentCamera.CameraSpeed);
@@ -111,7 +111,10 @@ namespace Risk_Project
         {
             GraphicsDevice.Clear(Color.Transparent);
 
-            spriteBatch.Begin(blendState: BlendState.AlphaBlend, transformMatrix: Camera.CurrentCameraTranslation);
+            spriteBatch.Begin(
+                samplerState: SamplerState.LinearWrap, 
+                blendState: BlendState.AlphaBlend, 
+                transformMatrix: Camera.CurrentCameraTranslation);
             currentBoard.Draw(gameTime);
             spriteBatch.End();
 
