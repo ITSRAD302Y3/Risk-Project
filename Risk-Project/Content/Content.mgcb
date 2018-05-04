@@ -339,3 +339,27 @@
 /processorParam:TextureFormat=Color
 /build:Textures/Territories/t002o2.png
 
+#begin Click.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Click.wav
+
+#begin KeyPress.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:KeyPress.wav
+
+#begin Move.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Move.wav
+
+#begin Select.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Select.wav
+

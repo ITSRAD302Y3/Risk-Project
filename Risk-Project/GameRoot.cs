@@ -6,6 +6,10 @@ using Risk_Project.Players;
 using Risk_Project.Components;
 using Risk_Project.World_Objects;
 using InputManager;
+using EmptyKeys.UserInterface;
+using EmptyKeys.UserInterface.Generated;
+using EmptyKeys.UserInterface.Input;
+using System;
 
 namespace Risk_Project
 {
@@ -16,6 +20,9 @@ namespace Risk_Project
 
         private int _width = 1280;
         private int _height = 720;
+        private BasicUI basicUI;
+        private int nativeScreenWidth;
+        private int nativeScreenHeight;
 
         #region Properties
 
@@ -51,9 +58,9 @@ namespace Risk_Project
 
             graphics.PreferredBackBufferWidth = _width;
             graphics.PreferredBackBufferHeight = _height;
-            graphics.SynchronizeWithVerticalRetrace = true;
-            graphics.IsFullScreen = false;
-            graphics.ApplyChanges();
+            graphics.PreparingDeviceSettings += graphics_PreparingDeviceSettings;
+            graphics.DeviceCreated += graphics_DeviceCreated;
+            Window.ClientSizeChanged += Window_ClientSizeChanged;
 
             IsMouseVisible = true;
             IsFixedTimeStep = false;
@@ -62,10 +69,41 @@ namespace Risk_Project
             Window.AllowAltF4 = false;
         }
 
+        #region UI Window Events
+
+        private void Window_ClientSizeChanged(object sender, EventArgs e)
+        {
+            if (basicUI != null)
+            {
+                Viewport viewPort = GraphicsDevice.Viewport;
+                basicUI.Resize(viewPort.Width, viewPort.Height);
+            }
+        }
+
+        protected void graphics_PreparingDeviceSettings(object sender, PreparingDeviceSettingsEventArgs e)
+        {
+            nativeScreenWidth = graphics.PreferredBackBufferWidth;
+            nativeScreenHeight = graphics.PreferredBackBufferHeight;
+
+            // Define resolution
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferMultiSampling = true;
+            graphics.SynchronizeWithVerticalRetrace = true;
+            graphics.IsFullScreen = false;
+            graphics.PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8;
+        }
+
+        protected void graphics_DeviceCreated(object sender, EventArgs e)
+        {
+            Engine engine = new MonoGameEngine(GraphicsDevice, nativeScreenWidth, nativeScreenHeight);
+        }
+
+        #endregion
+
         protected override void Initialize()
         {
             GameInit();
-
             base.Initialize();
         }
 
@@ -86,6 +124,7 @@ namespace Risk_Project
             BackgroundResource = new Queue<Texture2D>();
             BackgroundResource = Loader.ContentLoadQueue<Texture2D>(Content, "Backgrounds\\");
 
+            LoadEmptyKeysUI();
             CreateBoard();
         }
 
@@ -95,8 +134,9 @@ namespace Risk_Project
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            // Update Empty Keys UI
+            basicUI.UpdateInput(gameTime.ElapsedGameTime.Milliseconds);
+            basicUI.UpdateLayout(gameTime.ElapsedGameTime.Milliseconds);
 
             currentBoard.Update(gameTime);
             currentBoard.UpdateAnimation(gameTime);
@@ -117,6 +157,8 @@ namespace Risk_Project
                 transformMatrix: Camera.CurrentCameraTranslation);
             currentBoard.Draw(gameTime);
             spriteBatch.End();
+
+            basicUI.Draw(gameTime.ElapsedGameTime.TotalMilliseconds);
 
             base.Draw(gameTime);
         }
@@ -148,6 +190,33 @@ namespace Risk_Project
         private void CreateBoard()
         {
             currentBoard = new Board(this);
+        }
+
+        #endregion
+
+        #region Load Content
+
+        private void LoadEmptyKeysUI()
+        {
+            FontManager.DefaultFont = Engine.Instance.Renderer.CreateFont(SystemFontBold);
+
+            Viewport viewport = GraphicsDevice.Viewport;
+            basicUI = new BasicUI(viewport.Width, viewport.Height);
+
+            FontManager.Instance.LoadFonts(Content);
+            // Load Image and Sound content if necessary
+            //ImageManager.Instance.LoadImages(Content);
+            //SoundManager.Instance.LoadSounds(Content);
+            
+            // This replaces MonoGame's Update exit command
+            RelayCommand command = new RelayCommand(new Action<object>(ExitEvent));
+            KeyBinding keyBinding = new KeyBinding(command, KeyCode.Escape, ModifierKeys.None);
+            basicUI.InputBindings.Add(keyBinding);
+        }
+
+        private void ExitEvent(object obj)
+        {
+            Exit();
         }
 
         #endregion
