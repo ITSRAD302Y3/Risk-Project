@@ -9,6 +9,25 @@
              d:DesignHeight="300" d:DesignWidth="300" Background="Transparent">
 
     <Grid>
-        <TextBlock x:Name="txtBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Hello World !" VerticalAlignment="Top" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.3*"/>
+            <ColumnDefinition Width="1.3*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical" Grid.RowSpan="3">
+            <GroupBox Header="Orders">
+                <ListBox x:Name="lbxOrders" MinHeight="100"/>
+            </GroupBox>
+            <GroupBox Header="Players">
+                <ListBox x:Name="lbxPlayers" MinHeight="100"/>
+            </GroupBox>
+        </StackPanel>
+
     </Grid>
 </ek:UIRoot>
